@@ -1,0 +1,212 @@
+/* Reseta padrões */
+body, h1, table, th, td, button, span {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+}
+
+
+
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+header nav button {
+    padding: 10px 20px;
+    height: 40px;
+    width: 200px;
+    font-size: 16px;
+    color: white;
+    background-color: #3ca647;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header nav button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #007BFF;
+    color: white;
+}
+
+thead th {
+    text-align: left;
+    padding: 10px;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+
+/* Botões de situação */
+button {
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+button.btn-situacao {
+    display: inline-block;
+}
+
+button.btn-situacao.pendente {
+    background-color: #FFC107;
+}
+
+button.btn-situacao.iniciada {
+    background-color: #17A2B8;
+}
+
+button.btn-situacao.finalizada {
+    background-color: #28A745;
+}
+
+button.btn-situacao.cancelada {
+    background-color: #DC3545;
+}
+
+button.btn-situacao:hover {
+    opacity: 0.8;
+}
+
+/* Botão Editar */
+button.btn-editar {
+    padding: 8px 12px;
+    width: 100px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button.btn-editar:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo da Situação Atual */
+span.situacao {
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+}
+
+span.situacao.pendente {
+    background-color: #FFC107;
+}
+
+span.situacao.iniciada {
+    background-color: #17A2B8;
+}
+
+span.situacao.finalizada {
+    background-color: #28A745;
+}
+
+span.situacao.cancelada {
+    background-color: #DC3545;
+}
+
+/* Estilo de Paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-btn {
+    font-size: 16px;
+    line-height: 35px; 
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #007BFF;
+    text-decoration: none; 
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 0 15px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+.page-btn:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+.page-btn.active {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+.page-btn:disabled {
+    background-color: #f0f0f0;
+    color: #bbb;
+    cursor: not-allowed;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .grade{
+        display: grid;
+        grid-gap: 5px;
+    }
+}
+
+    
+
+@media only screen and (min-width:601px) and (max-width: 1024px )  {
+
+    .grade{
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 5px;
+    }
+}
+
+
+
+
+    

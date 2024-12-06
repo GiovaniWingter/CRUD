@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Tarefa</title>
+  <link rel="stylesheet" href="css/editar-novo.css">
+</head>
+<body>
+  <main>
+    <h1>Gerenciador de Tarefas</h1>
+    <form action="/tasks" method="post">
+      <!-- Identificação da Tarefa -->
+      <fieldset>
+        <legend>Informações da Tarefa</legend>
+
+        <label for="title">Título da Tarefa:</label>
+        <input type="text" id="title" name="title" placeholder="Informe o título" required>
+
+        <label for="description">Descrição:</label>
+        <textarea id="description" name="description" rows="4" placeholder="Detalhe a tarefa"></textarea>
+
+        <label for="due_date">Data de Entrega:</label>
+        <input type="date" id="due_date" name="due_date">
+
+        <label for="priority">Prioridade:</label>
+        <select id="priority" name="priority" required>
+          <option value="">Selecione...</option>
+          <option value="low">Baixa</option>
+          <option value="medium">Média</option>
+          <option value="high">Alta</option>
+        </select>
+      </fieldset>
+
+      <!-- Situação da Tarefa -->
+      <fieldset>
+        <legend>Situação da Tarefa</legend>
+
+        <label>
+          <input type="radio" name="status" value="pending" required>
+          Pendente
+        </label>
+        <label>
+          <input type="radio" name="status" value="in_progress" required>
+          Iniciada
+        </label>
+        <label>
+          <input type="radio" name="status" value="completed" required>
+          Finalizada
+        </label>
+        <label>
+          <input type="radio" name="status" value="canceled" required>
+          Cancelada
+        </label>
+      </fieldset>
+
+      <!-- Botões -->
+      <button type="submit">Salvar</button>
+      <button type="reset">Limpar</button>
+    </form>
+  </main>
+</body>
+</html>

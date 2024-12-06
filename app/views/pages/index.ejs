@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="css/listar.css">
+</head>
+
+<body>
+    <header>
+        <h1>Gerenciador de Tarefas</h1>
+        <nav>
+            <button onclick="location.href='/novo'">Nova Tarefa</button>
+        </nav>
+    </header>
+
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Data de Entrega</th>
+                    <th>Prioridade</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Exemplo de tarefa -->
+                <tr>
+                    <td>Criar Página de Login</td>
+                    <td>15/12/2024</td>
+                    <td>Alta</td>
+                    <td><span class="situacao pendente">Pendente</span></td>
+                    <td class="grade">
+                        <button class="btn-situacao iniciada" title="Definir como Iniciada"></button>
+                        <button class="btn-situacao cancelada" title="Definir como Cancelada"></button>
+                        <button class="btn-editar" onclick="location.href='/editar-tarefa/1'">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Configurar Banco de Dados</td>
+                    <td>20/12/2024</td>
+                    <td>Média</td>
+                    <td><span class="situacao iniciada">Iniciada</span></td>
+                    <td class="grade">
+                        <button class="btn-situacao finalizada" title="Definir como Finalizada"></button>
+                        <button class="btn-situacao cancelada" title="Definir como Cancelada"></button>
+                        <button class="btn-editar" onclick="location.href='/editar-tarefa/2'">Editar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Paginação -->
+        <div class="pagination">
+            <a href="#" class="page-btn">«</a>
+            <a href="#" class="page-btn active">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn">3</a>
+            <a href="#" class="page-btn">»</a>
+        </div>
+    </main>
+</body>
+
+</html>
