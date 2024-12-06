@@ -30,7 +30,7 @@ CREATE TABLE `tarefas` (
   `descricao` text,
   `data_entrega` date DEFAULT NULL,
   `prioridade` enum('baixa','media','alta') NOT NULL,
-  `situacao` enum('pendente','iniciada','finalizada','cancelada') NOT NULL DEFAULT 'pendente',
+  `situacao` enum('pendente', 'iniciada', 'finalizada', 'cancelada', 'excluida') NOT NULL DEFAULT 'pendente',
   `criada_em` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `atualizada_em` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
