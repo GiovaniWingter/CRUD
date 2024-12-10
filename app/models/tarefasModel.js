@@ -26,8 +26,8 @@ const tarefasModel = {
     // Criar uma nova tarefa
     create: async (dadosForm) => {
         try {
-            const [linhas] = await pool.query('INSERT INTO tarefas (titulo, descricao, data_entrega, prioridade, situacao) VALUES (?, ?, ?, ?, ?)', 
-                [dadosForm.titulo, dadosForm.descricao, dadosForm.data_entrega, dadosForm.prioridade, dadosForm.situacao]);
+            const [linhas] = await pool.query('INSERT INTO tarefas SET ?', 
+                [dadosForm]);
             return linhas;
         } catch (error) {
             console.error('Erro ao criar tarefa:', error);

@@ -71,6 +71,45 @@ tbody tr:nth-child(even) {
 
 
 /* Botões de situação */
+
+
+.play_circle {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    background-color: #17A2B8;
+}
+
+.done_outline {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    background-color: #28a745;
+}
+
+.delete {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    background-color: #dc3545;
+}
+
+.edit {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    background-color: #007BFF;
+}
+
+
 button {
     padding: 8px;
     font-size: 14px;

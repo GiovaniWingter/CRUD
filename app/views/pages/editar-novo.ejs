@@ -9,26 +9,32 @@
 <body>
   <main>
     <h1>Gerenciador de Tarefas</h1>
-    <form action="/tasks" method="post">
+    <form action="/add-edt-tarefa" method="post">
       <!-- Identificação da Tarefa -->
       <fieldset>
-        <legend>Informações da Tarefa</legend>
+        <legend><%= errosTratados.tituloForm %></legend>
 
-        <label for="title">Título da Tarefa:</label>
-        <input type="text" id="title" name="title" placeholder="Informe o título" required>
+        <input type="hidden" id="id" name="id"  value="<%= formulario.id %>">
+        
+        <label for="titulo">Título da Tarefa:</label>
+        <input type="text" id="titulo"  name="titulo" class="<%= errosTratados.class_titulo %>" 
+              value="<%= formulario.titulo %>" placeholder="Informe o título" required>
+            <span class="erro-label"> <%= errosTratados.msg_titulo %></span>
+        <label for="descricaco">Descrição:</label>
+        <textarea id="descricao" name="descricao" class="<%= errosTratados.class_descricao %>" 
+          rows="4" placeholder="Detalhe a tarefa"><%= formulario.descricao %></textarea>
+            <span class="erro-label"> <%= errosTratados.msg_descricao %></span>
+            <label for="data_entrega">Data de Entrega:</label>
+          <input type="date" id="data_entrega" value="<%= formulario.data_entrega %>" class="<%= errosTratados.class_data_entrega %>" name="data_entrega">
+            <span class="erro-label"> <%= errosTratados.msg_data_entrega %></span>
 
-        <label for="description">Descrição:</label>
-        <textarea id="description" name="description" rows="4" placeholder="Detalhe a tarefa"></textarea>
-
-        <label for="due_date">Data de Entrega:</label>
-        <input type="date" id="due_date" name="due_date">
-
-        <label for="priority">Prioridade:</label>
-        <select id="priority" name="priority" required>
-          <option value="">Selecione...</option>
-          <option value="low">Baixa</option>
-          <option value="medium">Média</option>
-          <option value="high">Alta</option>
+      
+        <label for="prioridade">Prioridade:</label>
+        <select id="prioridade" name="prioridade" required>
+          <option value="" <%= errosTratados.prioridade.op1 %> >Selecione...</option>
+          <option value="baixa" <%= errosTratados.prioridade.op2 %>>Baixa</option>
+          <option value="media" <%= errosTratados.prioridade.op3 %>>Média</option>
+          <option value="alta" <%= errosTratados.prioridade.op4 %>>Alta</option>
         </select>
       </fieldset>
 
@@ -37,25 +43,25 @@
         <legend>Situação da Tarefa</legend>
 
         <label>
-          <input type="radio" name="status" value="pending" required>
+          <input type="radio" name="situacao" value="pendente"  <%= errosTratados.situacao.op1 %> required>
           Pendente
         </label>
         <label>
-          <input type="radio" name="status" value="in_progress" required>
+          <input type="radio" name="situacao" value="iniciada" <%= errosTratados.situacao.op2 %> required>
           Iniciada
         </label>
         <label>
-          <input type="radio" name="status" value="completed" required>
+          <input type="radio" name="situacao" value="finalizada" <%= errosTratados.situacao.op3 %> required>
           Finalizada
         </label>
         <label>
-          <input type="radio" name="status" value="canceled" required>
+          <input type="radio" name="situacao" value="cancelada" <%= errosTratados.situacao.op4 %> required>
           Cancelada
         </label>
       </fieldset>
 
       <!-- Botões -->
-      <button type="submit">Salvar</button>
+      <button type="submit"><%= errosTratados.btnSubmit %></button>
       <button type="reset">Limpar</button>
     </form>
   </main>

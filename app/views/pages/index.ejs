@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas</title>
     <link rel="stylesheet" href="css/listar.css">
+    <!-- MATERIAL SYMBOLS & ICONS  -> https://fonts.google.com/icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -28,29 +31,53 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Exemplo de tarefa -->
-                <tr>
-                    <td>Criar Página de Login</td>
-                    <td>15/12/2024</td>
-                    <td>Alta</td>
-                    <td><span class="situacao pendente">Pendente</span></td>
-                    <td class="grade">
-                        <button class="btn-situacao iniciada" title="Definir como Iniciada"></button>
-                        <button class="btn-situacao cancelada" title="Definir como Cancelada"></button>
-                        <button class="btn-editar" onclick="location.href='/editar-tarefa/1'">Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Configurar Banco de Dados</td>
-                    <td>20/12/2024</td>
-                    <td>Média</td>
-                    <td><span class="situacao iniciada">Iniciada</span></td>
-                    <td class="grade">
-                        <button class="btn-situacao finalizada" title="Definir como Finalizada"></button>
-                        <button class="btn-situacao cancelada" title="Definir como Cancelada"></button>
-                        <button class="btn-editar" onclick="location.href='/editar-tarefa/2'">Editar</button>
-                    </td>
-                </tr>
+                <!-- Botões disponíveis 
+                
+                <button class="material-symbols-outlined play_circle" title="Definir como Iniciada" onclick="location.href='/iniciar-tarefa/ID'">play_circle</button>
+                <button class="material-symbols-outlined delete" title="Definir como Cancelada" onclick="location.href='/deletar-tarefa/ID'">delete</button>
+                <button class="material-symbols-outlined edit" title="Editar tarefa" onclick="location.href='/editar-tarefa/ID'">Edit</button>
+                <button class="material-symbols-outlined done_outline" title="Definir como Finalizada" onclick="location.href='/finalizar-tarefa/ID'">>done_outline</button>
+                
+                FIM Botões disponíveis -->
+                
+                <%  if(listaTarefas){ 
+                    listaTarefas.forEach((tarefa)=>{ %>
+                        <tr>
+                            <td><%= tarefa.titulo %> </td>
+                            <td><%= moment(tarefa.data_entrega).format( 'DD/MM/YYYY') %></td>
+                            <td><%= tarefa.prioridade %></td>
+                            <td><span class="situacao <%= tarefa.situacao %>"><%= tarefa.situacao %></span></td>
+                            <td class="grade">
+                                <button class="material-symbols-outlined edit" title="Editar tarefa" onclick="location.href='/editar-tarefa?id=<%= tarefa.id %>'">Edit</button>
+                            <%
+                            if(tarefa.situacao == 'pendente' ){
+                                %>   
+                                <button class="material-symbols-outlined play_circle" title="Definir como Iniciada" onclick="location.href='/iniciar-tarefa?id=<%= tarefa.id %>'">play_circle</button>
+                                <%
+                                }
+                            if(tarefa.situacao == 'iniciada' ){
+                                    %>   
+                                    <button class="material-symbols-outlined done_outline" title="Definir como Finalizada" onclick="location.href='/finalizar-tarefa?id=<%= tarefa.id %>'">done_outline</button>
+                                    <%
+                                }
+                            if(tarefa.situacao != 'cancelada' ){
+                                    %>   
+                                    <button class="material-symbols-outlined delete" title="Definir como Cancelada" onclick="location.href='/deletar-tarefa?id=<%= tarefa.id %>'">delete</button>
+                                    <%
+                                }
+                                %>   
+
+               
+                            </td>
+                        </tr>
+                        
+            <%      });
+                }else { %>
+                    <tr colspan="5">
+                        <td>Não temos tarefas registradas!</td>
+                    </tr>    
+            <%  } %>
+                
             </tbody>
         </table>
 
