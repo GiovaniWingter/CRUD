@@ -26,8 +26,9 @@
                     <th>Título</th>
                     <th>Data de Entrega</th>
                     <th>Prioridade</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
                     <th>Situação</th>
-                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,30 +47,44 @@
                             <td><%= tarefa.titulo %> </td>
                             <td><%= moment(tarefa.data_entrega).format( 'DD/MM/YYYY') %></td>
                             <td><%= tarefa.prioridade %></td>
-                            <td><span class="situacao <%= tarefa.situacao %>"><%= tarefa.situacao %></span></td>
-                            <td class="grade">
+                            <td>
                                 <button class="material-symbols-outlined edit" title="Editar tarefa" onclick="location.href='/editar-tarefa?id=<%= tarefa.id %>'">Edit</button>
-                            <%
-                            if(tarefa.situacao == 'pendente' ){
-                                %>   
-                                <button class="material-symbols-outlined play_circle" title="Definir como Iniciada" onclick="location.href='/iniciar-tarefa?id=<%= tarefa.id %>'">play_circle</button>
+                            </td>
+                            <td>
+                                <button class="material-symbols-outlined delete" title="Definir como Cancelada" onclick="location.href='/deletar-tarefa?id=<%= tarefa.id %>'">delete_forever</button>
+                            </td>                                
+                            <td class="grade">
                                 <%
+                                    if(tarefa.situacao == 'pendente' ){
+                                %>  
+                                <span class="situacao <%= tarefa.situacao %>"><%= tarefa.situacao %></span>
+                                <div>
+                                    <button class="material-symbols-outlined play_circle" title="Definir como Iniciada" onclick="location.href='/iniciar-tarefa?id=<%= tarefa.id %>'">play_circle</button>
+                                    <span>Iniciar</span>
+                                    </div>             
+                                    <%
                                 }
-                            if(tarefa.situacao == 'iniciada' ){
-                                    %>   
+                                if(tarefa.situacao == 'iniciada' ){
+                                %>
+                                <span class="situacao <%= tarefa.situacao %>"><%= tarefa.situacao %></span>
+                                <div>
                                     <button class="material-symbols-outlined done_outline" title="Definir como Finalizada" onclick="location.href='/finalizar-tarefa?id=<%= tarefa.id %>'">done_outline</button>
+                                    <span>Finalizar</span>
+                                    </div>   
                                     <%
                                 }
-                            if(tarefa.situacao != 'cancelada' ){
+                                if(tarefa.situacao != 'cancelada' && tarefa.situacao != 'finalizada'  ){
                                     %>   
-                                    <button class="material-symbols-outlined cancel" title="Definir como Cancelada" onclick="location.href='/cancelar-tarefa?id=<%= tarefa.id %>'">cancel</button>
-                                    <%
-                                }
-                            if(tarefa.situacao != 'excluida' ){
-                                    %>   
-                                    <button class="material-symbols-outlined delete" title="Definir como Cancelada" onclick="location.href='/deletar-tarefa?id=<%= tarefa.id %>'">delete_forever</button>
-                                    <%
-                                }
+                                    <div>
+                                        <button class="material-symbols-outlined cancel" title="Definir como Cancelada" onclick="location.href='/cancelar-tarefa?id=<%= tarefa.id %>'">cancel</button>
+                                        <span>Cancelar</span>
+                                        </div>
+                                        <%
+                                    }else{
+                                        %>                                         
+                                        <span class="situacao <%= tarefa.situacao %>"><%= tarefa.situacao %></span>
+                                        <%
+                            }
                                 %>   
 
                

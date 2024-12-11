@@ -11,8 +11,6 @@ body {
     background-color: #f4f4f9;
 }
 
-
-
 header {
     padding: 20px;
     display: flex;
@@ -60,19 +58,21 @@ thead th {
 }
 
 tbody td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
 }
 
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+tbody td div {
+    display: grid;
+    width: 70px;
+    justify-items: center;
 
+}
 
 /* Botões de situação */
-
-
 .play_circle {
     border: none;
     border-radius: 50%;
@@ -171,7 +171,9 @@ button.btn-editar:hover {
 /* Estilo da Situação Atual */
 span.situacao {
     padding: 5px 10px;
+    height: 35px;
     border-radius: 3px;
+    text-align: center;
     color: white;
     font-size: 14px;
 }
@@ -189,7 +191,7 @@ span.situacao.finalizada {
 }
 
 span.situacao.cancelada {
-    background-color: #DC3545;
+    background-color: #ec9f0f;
 }
 
 /* Estilo de Paginação */
@@ -247,6 +249,17 @@ span.situacao.cancelada {
 @media only screen and (min-width:601px) and (max-width: 1024px )  {
 
     .grade{
+        min-width: 40vw;
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 5px;
+    }
+}
+
+@media only screen and (min-width:1025px )  {
+
+    .grade{
+        min-width: 20vw;
         display: grid;
         grid-auto-flow: column;
         grid-gap: 5px;

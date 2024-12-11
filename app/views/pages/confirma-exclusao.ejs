@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes da Tarefa</title>
+  <link rel="stylesheet" href="css/detalhes.css">
+</head>
+<body>
+  <header>
+    <h1>Detalhes da Tarefa</h1>
+    <nav>
+      <a href="/" class="btn-voltar">Voltar para Lista</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="detalhes-tarefa">
+      <h2>Informações da Tarefa</h2>
+      <div class="info">
+        <p><strong>Título:</strong> <%= formulario.titulo %></p>
+        <p><strong>Descrição:</strong> <%= formulario.descricao %></p>
+        <p><strong>Data de Entrega:</strong> <%=  moment(formulario.data_entrega).format( 'DD/MM/YYYY')  %></p>
+        <p><strong>Prioridade:</strong> <%= formulario.prioridade %></p>
+        <p><strong>Situação:</strong> <span class="situacao <%= formulario.situacao %>"><%= formulario.situacao %></span></p>
+      </div>
+
+ 
+
+      <h3>Excluir?</h3>
+      <nav>
+        <a href="/excluir-tarefa?id=<%= formulario.id %>" class="btn-excluir">Sim</a>
+        <a href="/" class="btn-voltar">Não</a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

@@ -103,6 +103,35 @@ const tarefasController = {
         }
     },
 
+    // Mostrar tarefa para exclusão
+    confirmaExclusao: async (req, res) => {
+        res.locals.moment = moment;
+        const id = req.query.id;
+
+        try {
+            const [tarefa] = await tarefasModel.findById(id);
+
+            if (!tarefa) {
+                return res.status(404).json({ erro: "Tarefa não encontrada" });
+            }
+
+            const objTratado = tarefasController.prepararFormulario(tarefa);
+            res.render("pages/confirma-exclusao", {
+                formulario: {
+                    titulo: tarefa.titulo,
+                    descricao: tarefa.descricao,
+                    data_entrega: moment(tarefa.data_entrega).format('YYYY-MM-DD'),
+                    prioridade: tarefa.prioridade,
+                    situacao: tarefa.situacao,
+                    id:id,
+                }
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ erro: "Falha ao acessar dados" });
+        }
+    },
+
     // Alterar situação de uma tarefa
     alterarSituacao: async (req, res) => {
         const id = req.query.id;
@@ -110,7 +139,7 @@ const tarefasController = {
             '/finalizar-tarefa': 'finalizada',
             '/iniciar-tarefa': 'iniciada',
             '/cancelar-tarefa': 'cancelada',
-            '/deletar-tarefa': 'excluida',
+            '/excluir-tarefa': 'excluida',
         };
 
         const novaSituacao = situacaoMap[req.path];
