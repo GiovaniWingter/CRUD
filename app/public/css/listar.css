@@ -99,6 +99,7 @@ tbody td div {
     font-size: 2rem;
     background-color: #ec9f0f;
 }
+
 .delete {
     border: none;
     border-radius: 50%;
@@ -233,18 +234,12 @@ span.situacao.cancelada {
     cursor: not-allowed;
 }
 
-
-
-
-
 @media only screen and (max-width: 600px) {
     .grade{
         display: grid;
         grid-gap: 5px;
     }
 }
-
-    
 
 @media only screen and (min-width:601px) and (max-width: 1024px )  {
 
@@ -266,7 +261,3 @@ span.situacao.cancelada {
     }
 }
 
-
-
-
-    
