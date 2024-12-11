@@ -7,26 +7,26 @@ const tarefasController = {
     regrasValidacao: [
         body('titulo')
             .notEmpty().withMessage('O título da tarefa é obrigatório.')
-            .isLength({ max: 100 }).withMessage('O título pode ter no máximo 100 caracteres.'),
+            .isLength({ max: 100 }).withMessage('* O título pode ter no máximo 100 caracteres.'),
         body('descricao')
             .optional()
-            .isLength({ max: 500 }).withMessage('A descrição pode ter no máximo 500 caracteres.'),
+            .isLength({ max: 500 }).withMessage('* A descrição pode ter no máximo 500 caracteres.'),
         body('data_entrega')
             .optional()
-            .isISO8601().withMessage('A data de entrega deve ser uma data válida!')
+            .isISO8601().withMessage('* A data de entrega deve ser uma data válida!')
             .custom(value => {
                 const today = new Date().toISOString().split('T')[0];
                 if (value < today) {
-                    throw new Error('A data de entrega não pode ser anterior à data atual.');
+                    throw new Error('* A data de entrega não pode ser anterior à data atual.');
                 }
                 return true;
             }),
         body('prioridade')
-            .notEmpty().withMessage('A prioridade é obrigatória.')
-            .isIn(['baixa', 'media', 'alta']).withMessage('A prioridade deve ser baixa, média ou alta.'),
+            .notEmpty().withMessage('* A prioridade é obrigatória.')
+            .isIn(['baixa', 'media', 'alta']).withMessage('* A prioridade deve ser baixa, média ou alta.'),
         body('situacao')
-            .notEmpty().withMessage('O status é obrigatório.')
-            .isIn(['pendente', 'iniciada', 'finalizada', 'cancelada', 'excluida']).withMessage('Status inválido.')
+            .notEmpty().withMessage('* O status é obrigatório.')
+            .isIn(['pendente', 'iniciada', 'finalizada', 'cancelada', 'excluida']).withMessage('* Status inválido.')
     ],
 
     // Listar tarefas
@@ -109,9 +109,10 @@ const tarefasController = {
         const situacaoMap = {
             '/finalizar-tarefa': 'finalizada',
             '/iniciar-tarefa': 'iniciada',
-            '/deletar-tarefa': 'cancelada',
+            '/cancelar-tarefa': 'cancelada',
+            '/deletar-tarefa': 'excluida',
         };
-        
+
         const novaSituacao = situacaoMap[req.path];
 
         if (!novaSituacao) {

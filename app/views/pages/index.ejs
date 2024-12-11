@@ -62,7 +62,12 @@
                                 }
                             if(tarefa.situacao != 'cancelada' ){
                                     %>   
-                                    <button class="material-symbols-outlined delete" title="Definir como Cancelada" onclick="location.href='/deletar-tarefa?id=<%= tarefa.id %>'">delete</button>
+                                    <button class="material-symbols-outlined cancel" title="Definir como Cancelada" onclick="location.href='/cancelar-tarefa?id=<%= tarefa.id %>'">cancel</button>
+                                    <%
+                                }
+                            if(tarefa.situacao != 'excluida' ){
+                                    %>   
+                                    <button class="material-symbols-outlined delete" title="Definir como Cancelada" onclick="location.href='/deletar-tarefa?id=<%= tarefa.id %>'">delete_forever</button>
                                     <%
                                 }
                                 %>   

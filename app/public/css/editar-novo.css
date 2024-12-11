@@ -97,6 +97,3 @@ body, h1, form, fieldset, legend, label, input, textarea, select, button {
   .erro-label{
     color: red;
   }
-  .erro-label::before {
-    content: " *"; /* O marcador a ser adicionado */
-  }
