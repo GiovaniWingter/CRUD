@@ -31,6 +31,16 @@ router.get("/editar-tarefa", function (req, res) {
     tarefasController.mostrarTarefa(req, res);
 });
 
+router.get("/iniciar-tarefa", function (req, res) {
+    tarefasController.alterarSituacao(req, res);
+});
+router.get("/deletar-tarefa", function (req, res) {
+    tarefasController.alterarSituacao(req, res);
+});
+router.get("/finalizar-tarefa", function (req, res) {
+    tarefasController.alterarSituacao(req, res);
+});
+
 
 
 

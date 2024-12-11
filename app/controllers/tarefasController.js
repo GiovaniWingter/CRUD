@@ -8,16 +8,14 @@ const tarefasController = {
         body('titulo')
             .notEmpty().withMessage('O título da tarefa é obrigatório.')
             .isLength({ max: 100 }).withMessage('O título pode ter no máximo 100 caracteres.'),
-
         // Validação da descrição
         body('descricao')
             .optional() // Permite que o campo seja vazio
             .isLength({ max: 500 }).withMessage('A descrição pode ter no máximo 500 caracteres.'),
-
         // Validação da data de entrega
         body('data_entrega')
             .optional()
-            .isDate().withMessage('A data de entrega deve ser uma data válida no formato YYYY-MM-DD.')
+            .isISO8601().withMessage('A data de entrega deve ser uma data válida!')
             .custom((value) => {
                 const today = new Date().toISOString().split('T')[0];
                 if (value < today) {
@@ -25,16 +23,14 @@ const tarefasController = {
                 }
                 return true;
             }),
-
         // Validação da prioridade
         body('prioridade')
             .notEmpty().withMessage('A prioridade é obrigatória.')
             .isIn(['baixa', 'media', 'alta']).withMessage('A prioridade deve ser uma das opções: baixa, média ou alta.'),
-
         // Validação do status
         body('situacao')
             .notEmpty().withMessage('O status é obrigatório.')
-            .isIn(['pendente', 'iniciada', 'finalizda', 'cancelada', 'excluida'])
+            .isIn(['pendente', 'iniciada', 'finalizada', 'cancelada', 'excluida'])
             .withMessage('O status deve ser uma das opções: pendente, iniciada, finalizada ou cancelada.'),
     ],
 
@@ -69,8 +65,6 @@ const tarefasController = {
                 prioridade: { op1: "", op2: "", op3: "", op4: "" },
                 situacao: { op1: "", op2: "", op3: "", op4: "" }
             }
-
-
             switch (req.body.prioridade) {
                 case "baixa":
                     objTratado.prioridade.op2 = "selected";
@@ -99,14 +93,10 @@ const tarefasController = {
                     objTratado.situacao.op4 = "checked";
                     break;
             }
-
-
-
             if (req.body.id != 0) {
                 objTratado.tituloForm = "Alterar Tarefa";
                 objTratado.btnSubmit = "Alterar";
             }
-
             erros.errors.forEach((itemErro) => {
                 if (itemErro.path == "titulo") {
                     objTratado.msg_titulo = itemErro.msg
@@ -121,7 +111,6 @@ const tarefasController = {
                     objTratado.class_data_entrega = "erro-form"
                 }
             });
-
             return res.render("pages/editar-novo", {
                 formulario: req.body,
                 errosTratados: objTratado,
@@ -151,14 +140,11 @@ const tarefasController = {
 
     mostrarTarefa: async (req, res) => {
         res.locals.moment = moment;
-
         //pegando o id da tarefa
         let id = req.query.id;
-
         try {
             var results = await tarefasModel.findById(id);
             console.table(results);
-
             let objTratado = {
                 tituloForm: "Alterar Tarefa",
                 btnSubmit: "Alterar",
@@ -185,7 +171,6 @@ const tarefasController = {
                 default:
                     objTratado.prioridade.op0 = "selected";
             }
-
             switch (results[0].situacao) {
                 case "pendente":
                     objTratado.situacao.op1 = "checked";
@@ -200,20 +185,32 @@ const tarefasController = {
                     objTratado.situacao.op4 = "checked";
                     break;
             }
-
-
             res.render("pages/editar-novo", {
-                formulario: { titulo: results[0].titulo , descricao: results[0].descricao, data_entrega: moment(results[0].data_entrega).format( 'YYYY/MM/DD') , prioridade: "", situacao: "", id:id },
+                formulario: { titulo: results[0].titulo, descricao: results[0].descricao, data_entrega: moment(results[0].data_entrega).format('YYYY-MM-DD'), prioridade: "", situacao: "", id: id },
                 errosTratados: objTratado,
             });
-
-
-
         } catch (e) {
             console.log(e);
             res.json({ erro: "Falha ao acessar dados" });
         }
     },
+
+    alterarSituacao: async (req, res) => {
+        let id = req.query.id;
+        switch(req.path){
+            case '/finalizar-tarefa':
+                var results = await tarefasModel.updateSituacao('finalizada', id);
+                break;
+            case '/iniciar-tarefa':
+                var results = await tarefasModel.updateSituacao('iniciada', id);
+                break;
+            case '/deletar-tarefa':
+                var results = await tarefasModel.updateSituacao('cancelada', id);
+                break;
+        }
+        console.table(results);
+        res.redirect('/');
+    }
 
 
 };
